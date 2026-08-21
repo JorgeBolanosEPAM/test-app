@@ -1,39 +1,46 @@
-# Quiz CLI
+# test-app
 
-## Project Overview
+## Project Description
 
-`Quiz CLI` is an interactive command-line quiz game built with Node.js. It loads quiz questions from a local JSON file, lets the user choose a category and question count, and then walks through a multiple-choice quiz with scoring, progress tracking, and end-of-quiz review feedback.
+`test-app` is an interactive Node.js command-line quiz application. It loads multiple-choice questions from a local JSON file, lets the user choose a quiz category and number of questions, tracks score and progress during the quiz, and presents a final review of incorrect answers.
 
-The application is designed as a small educational CLI for practicing JavaScript, Node.js fundamentals, and general programming concepts.
+The project is implemented as a small modular CLI application using modern JavaScript and Node.js ES modules.
 
-## Features
+## Key Features
 
-* Interactive terminal quiz experience.
-* Category selection from a local question bank.
-* Choice of quiz length, when enough questions are available.
-* Randomized question order within each quiz session.
-* Multiple-choice answers entered by number.
-* Immediate correctness feedback after each question.
-* Final score summary with a performance message.
-* Review of incorrect answers at the end of the quiz.
-* ANSI-colored terminal output for readability.
+- Interactive terminal-based quiz flow
+- Category selection before starting a quiz
+- Question count selection
+- Randomized question order
+- Multiple-choice answer input
+- Immediate correctness feedback after each answer
+- Progress indicator during the quiz
+- Final score summary
+- Performance message based on the final score
+- Review of incorrect answers at the end of the quiz
+- ANSI-colored terminal output for a better CLI experience
 
 ## Technologies and Tools
 
-* Node.js `>=18.0.0`
-* ES Modules (`"type": "module"` in `package.json`)
-* Built-in Node.js modules:
-  * `node:fs/promises`
-  * `node:path`
-  * `node:url`
-  * `node:readline`
-* JSON-based local content storage for quiz questions
-* `node --test` script defined in `package.json`
+- JavaScript
+- Node.js `>=18.0.0`
+- ES Modules (`"type": "module"`)
+- Built-in Node.js modules:
+  - `node:fs/promises`
+  - `node:path`
+  - `node:url`
+  - `node:readline`
+- npm scripts:
+  - `npm start`
+  - `npm test`
+
+No third-party npm dependencies are declared in `package.json`.
 
 ## Project Structure
 
 ```text
 test-app/
+├── README.md
 ├── data/
 │   └── questions.json
 ├── index.js
@@ -44,139 +51,129 @@ test-app/
     └── quiz.js
 ```
 
-### Key files and directories
+### File and directory responsibilities
 
-* `index.js` — Main executable entry point for the CLI application.
-* `package.json` — Project metadata, Node.js engine requirement, and npm scripts.
-* `data/questions.json` — Quiz content organized into categories and questions.
-* `src/colors.js` — ANSI color helpers for terminal formatting.
-* `src/input.js` — Readline-based input helpers for prompts, selection, confirmation, and pause behavior.
-* `src/quiz.js` — Core quiz logic, including question flow, scoring, progress display, and result summary.
+- `index.js` — Main executable entry point. Loads quiz data, shows the banner, and drives the application flow.
+- `data/questions.json` — Local quiz content source containing the question categories and multiple-choice questions.
+- `src/colors.js` — ANSI color and text-style helpers for terminal output.
+- `src/input.js` — Readline-based input helpers for prompts, selection menus, confirmations, and pause actions.
+- `src/quiz.js` — Core quiz logic implemented as the `Quiz` class.
+- `package.json` — Project metadata and npm scripts.
+- `README.md` — Project documentation.
 
 ## Setup Instructions
 
 ### Prerequisites
 
-* Node.js `18.0.0` or newer
-* npm-compatible Node.js environment
+- Node.js `18.0.0` or newer
+- npm-compatible environment
 
 ### Installation
 
-This project does not declare any external npm dependencies. No installation step is required beyond having Node.js available.
-
-If you want to verify the package metadata locally, you can inspect `package.json`, but there are no third-party packages to install from this repository.
+No external package installation is required because the project does not declare third-party dependencies.
 
 ### Configuration
 
 No environment variables or external configuration files are required.
 
-The quiz content is loaded from:
+Quiz content is loaded locally from:
 
-* `data/questions.json`
+- `data/questions.json`
 
 ### Running the Application
+
+Start the quiz application with:
 
 ```bash
 npm start
 ```
 
-You can also run the entry point directly:
+You can also run it directly with Node.js:
 
 ```bash
 node index.js
 ```
 
-### Running Tests
-
-A test script is defined in `package.json`:
-
-```bash
-npm test
-```
-
-At the time of inspection, no test files were present in the discovered repository tree, so the test command may not execute any tests unless test files are added.
-
 ## Getting Started
 
 1. Clone the repository.
 2. Change into the project directory.
-3. Ensure Node.js `18+` is installed.
-4. Run the application with `npm start`.
-5. Choose a quiz category from the list.
-6. Choose how many questions to answer.
-7. Enter answers using the number shown beside each option.
-8. Review your score and any incorrect answers at the end.
-9. Choose whether to play again.
+3. Ensure Node.js `18.0.0` or newer is available.
+4. Run the application:
+   ```bash
+   npm start
+   ```
+5. Follow the interactive prompts to:
+   - choose a quiz category,
+   - choose how many questions to answer,
+   - select answers for each question,
+   - review your final score and incorrect answers.
+6. Optionally run the test script:
+   ```bash
+   npm test
+   ```
 
 ## Usage Examples
 
-### Start the quiz
+### Start a quiz
 
 ```bash
 npm start
 ```
 
-### Example interaction flow
+### Run the application directly
 
-```text
-Choose a category:
-
-  1. JavaScript Basics
-  2. Node.js Fundamentals
-  3. General Programming
-
-How many questions?
-
-  1. All questions
-  2. 3 questions
-  3. 5 questions
-
-Your choice (enter number):
+```bash
+node index.js
 ```
 
-### Answering a question
+### Run the test suite
 
-```text
-What keyword is used to declare a constant in JavaScript?
-
-  1. var
-  2. let
-  3. const
-  4. define
-
-Your choice (enter number):
+```bash
+npm test
 ```
 
-### End-of-quiz result summary
+### Typical quiz flow
 
-The application displays:
+```text
+1. Select a category
+2. Choose the number of questions
+3. Answer multiple-choice questions
+4. Review your score and incorrect answers
+5. Choose whether to play again
+```
 
-* total score
-* percentage
-* a performance message
-* a review of incorrect answers, if any
+## Testing
+
+The project defines a test script in `package.json`:
+
+```bash
+npm test
+```
+
+This runs Node.js built-in tests via:
+
+```bash
+node --test
+```
+
+No test files were identified in the repository structure provided.
 
 ## Architecture
 
-The application is intentionally small and modular:
+The application is organized into a few small modules:
 
-* `index.js` coordinates the application flow.
-* `src/input.js` encapsulates terminal input handling.
-* `src/quiz.js` contains the quiz state and game logic.
-* `src/colors.js` centralizes terminal styling.
-* `data/questions.json` acts as the local data source for quiz content.
+- `index.js` coordinates the application flow.
+- `src/input.js` handles terminal input and user prompts.
+- `src/quiz.js` contains the quiz engine and result review logic.
+- `src/colors.js` centralizes terminal styling helpers.
+- `data/questions.json` provides the quiz content consumed by the app.
 
-This structure keeps presentation, input handling, and quiz logic separated while remaining simple enough for a CLI learning project.
-
-## Development Notes
-
-* The quiz uses built-in Node.js modules only; no external runtime libraries are required.
-* Questions are stored locally, so the application does not depend on network access.
-* The quiz engine shuffles questions for each run to vary the order of prompts.
-* The CLI uses `readline` to collect user input interactively in the terminal.
+This structure keeps the CLI entry point lightweight and separates UI, input handling, and quiz logic.
 
 ## Limitations
 
-* There is no persistent storage for scores or progress.
-* There is no command-line argument support for selecting categories or question counts directly.
-* The repository does not currently include automated test files, even though a test script is defined.
+- Quiz content is fixed in the local `data/questions.json` file.
+- The application does not use external APIs.
+- No environment-based configuration is required or documented.
+- No Docker, CI/CD, or deployment configuration was found in the repository.
